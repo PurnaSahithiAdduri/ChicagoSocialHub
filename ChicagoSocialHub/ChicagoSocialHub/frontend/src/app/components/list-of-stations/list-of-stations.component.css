@@ -1,0 +1,18 @@
+table {
+    width: 100%;
+}
+
+.mat-column-right {
+    text-align: center;
+}
+
+agm-map {
+    height: 500px;
+}
+.mat-warn{
+    background-color:#df6c20 !important;
+}
+
+th.mat-header-cell:last-of-type {
+    padding-right: -16px;
+}

@@ -1,0 +1,29 @@
+////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+
+
+/// This file and the source code provided can be used only for   
+/// the projects and assignments of this course
+
+/// Last Edit by Purna Sahithi Adduri: 1/30/2019
+
+
+////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+
+
+export interface Station {
+    id: String;
+    stationName: String;
+    availableBikes: number;
+    availableDocks: number;
+    is_renting: String;
+    lastCommunicationTime: String;
+    latitude: number;    
+    longitude: number;
+    status: String;
+    totalDocks: Number;
+buttons:any
+gte:any,
+now:any
+}

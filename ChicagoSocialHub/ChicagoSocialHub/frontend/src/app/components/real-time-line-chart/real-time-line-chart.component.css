@@ -1,0 +1,45 @@
+
+
+     .line {
+        fill: none;
+        stroke: green;
+    } 
+
+    .mat-warn{
+        background-color:#df6c20 !important;
+    }
+
+    .mat-checkbox-inner-container{
+        height: 25px !important;
+        width:25px !important;
+    }
+  
+    .Legend div{
+        margin-left:15px;
+        width:16px;
+        border:1px solid #808080;
+        display:inline-block;
+    }
+    .ie7 .Legend div{
+        display:inline;
+        zoom:1;
+        
+    }
+    .Blue {background-color:#3498DB;    height: 15px;}
+    .Green {background-color:green;    height: 15px;}
+    .Red {background-color:#C0392B;    height: 15px;}
+
+    #bulkyFolder {
+        display: none;
+      }
+      #bulkyFolder:not(*:root) { /* Supports only WebKit browsers like chorome */
+        display: block;
+      }
+
+      #bulkyFolder1 {
+        display:block;
+      }
+      #bulkyFolder1:not(*:root) { /* Supports only WebKit browsers */
+        display: none;
+      }
+

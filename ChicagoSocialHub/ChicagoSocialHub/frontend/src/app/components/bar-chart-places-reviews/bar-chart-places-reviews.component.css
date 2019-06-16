@@ -1,0 +1,7 @@
+.bar {
+    fill: lightskyblue;
+}
+
+.bar:hover {
+    fill: brown;
+}

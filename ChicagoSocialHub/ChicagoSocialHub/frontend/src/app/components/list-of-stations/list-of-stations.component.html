@@ -1,0 +1,198 @@
+<div>
+  <br>
+  <mat-card>
+    <button mat-raised-button color="primary" routerLink="/home">
+      Home
+      &nbsp;
+      <mat-icon>home</mat-icon>
+    </button>
+    &nbsp; &nbsp; &nbsp;
+    <button mat-raised-button color="primary" routerLink="/find">
+      Find Another Place
+      &nbsp;
+      <mat-icon>search</mat-icon>
+    </button>
+    &nbsp; &nbsp; &nbsp;
+    <!-- <button mat-raised-button color="primary" routerLink="/app-stacked-bar-chart" (click)="toggleStackedBar()">
+      <mat-icon>assessment</mat-icon>
+      <span> {{ !isViewableStackedBar ? 'Plot Available Docks and Bikes for the Stations' : 'Hide Plotted the Chart'}}</span>
+    </button>-->
+    &nbsp; &nbsp; &nbsp;
+    <button style="position: absolute;top: 16px;right: 20px;" mat-raised-button color="warn" (click)="goBack()">
+
+      <span>Back</span> &nbsp;
+      <mat-icon>keyboard_backspace</mat-icon>
+    </button>
+
+    <br><br>
+    <mat-divider></mat-divider>
+    <br>
+    <table mat-table [dataSource]="stations" style="text-align: center">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="stationName">
+        <th mat-header-cell *matHeaderCellDef>stationName</th>
+        <td mat-cell *matCellDef="let element"> {{element.stationName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="availableBikes">
+        <th mat-header-cell *matHeaderCellDef>availableBikes</th>
+        <td mat-cell *matCellDef="let element"> {{element.availableBikes}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="availableDocks">
+        <th mat-header-cell *matHeaderCellDef>availableDocks</th>
+        <td mat-cell *matCellDef="let element"> {{element.availableDocks}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="is_renting">
+        <th mat-header-cell *matHeaderCellDef>is_renting</th>
+        <td mat-cell *matCellDef="let element"> {{element.is_renting}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="lastCommunicationTime">
+        <th mat-header-cell *matHeaderCellDef>lastCommunicationTime </th>
+        <td mat-cell *matCellDef="let element"> {{element.lastCommunicationTime}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="latitude">
+        <th mat-header-cell *matHeaderCellDef>latitude</th>
+        <td mat-cell *matCellDef="let element"> {{element.latitude}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="longitude">
+        <th mat-header-cell *matHeaderCellDef>longitude</th>
+        <td mat-cell *matCellDef="let element"> {{element.longitude}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>status</th>
+        <td mat-cell *matCellDef="let element"> {{element.status}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="totalDocks">
+        <th mat-header-cell *matHeaderCellDef>totalDocks</th> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        <td mat-cell *matCellDef="let element"> {{element.totalDocks}}
+          &nbsp;
+          <!--    <button mat-raised-button color="primary"  routerLink="/stacked-bar-chart">
+          Stacked-Bar Chart     
+   <mat-icon>bar_chart</mat-icon>    
+          </button> &nbsp;
+             <button mat-raised-button color="primary"  (click)="findStationslogs(element.stationName,'realTime')">
+              Real-Time Chart       
+      <mat-icon>bar_chart</mat-icon>  
+             </button>  
+             &nbsp; 
+             <button mat-raised-button color="primary"  (click)="findStationslogs(element.stationName,'SMA')">
+              SMA Chart     
+      <mat-icon>bar_chart</mat-icon>  
+             </button>  -->
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="stackedBar">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+
+          <button mat-raised-button color="primary" routerLink="/stacked-bar-chart">
+            Stacked-Bar Chart
+            <mat-icon>bar_chart</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="realTime">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element" style="padding: 5px;">
+
+          <button mat-raised-button color="primary" (click)="findStationslogs(element.stationName,'realTime')">
+            Real-Time Chart
+            <mat-icon>bar_chart</mat-icon>
+          </button>
+
+
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="SMA">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+
+          <button mat-raised-button color="primary" (click)="findStationslogs(element.stationName,'SMA')">
+            SMA Chart
+            <mat-icon>bar_chart</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <!--routerLink="/line_chart"-->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+
+  </mat-card>
+</div>
+<!--<app-line-chart *ngIf='isViewableStackedBar'></app-line-chart>-->
+<agm-map [(latitude)]="location.lat" [(longitude)]="location.lng" [(zoom)]="location.zoom" [disableDefaultUI]="true"
+  [zoomControl]="true">
+
+
+ <agm-marker (markerClick)="clickedMarker('Union Station', 0)" [latitude]="location.lat" [longitude]="location.lng"
+    [iconUrl]="icon" [label]="{ color: 'white', text: 'You are Here'}">
+
+    <agm-info-window #infoWindow>
+      <strong>You are currently here by the Union Station</strong>
+
+    </agm-info-window>
+  </agm-marker>
+
+
+
+
+
+  <agm-marker (markerClick)="clickedMarker('placeSelected', 0)" [(latitude)]="placeSelected.latitude"
+    [longitude]="placeSelected.longitude" [iconUrl]="{ url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+                scaledSize: {
+                  width: 40,
+                  height: 60
+              }}">
+
+    <agm-info-window #infoWindow>
+      <strong>You have selected this place</strong>
+      <br><br><br>
+      <strong>Name: {{placeSelected.name}}</strong>
+      <br><br>
+      <strong>Phone: {{placeSelected.display_phone}}</strong>
+      <br><br>
+      <strong>Address: {{placeSelected.address1}}</strong>
+    </agm-info-window>
+  </agm-marker>
+
+
+
+
+  <agm-marker *ngFor="let m of markers; let i = index" (markerClick)="clickedMarker(m.stationName, i)"
+    [latitude]="m.latitude" [longitude]="m.longitude">
+
+    <agm-info-window #infoWindow>
+      <strong>Divvy Station</strong>
+      <br><br>
+      <strong>stationName: {{m.stationName}}</strong>
+      <br><br>
+      <strong>status: {{m.status}}</strong>
+      <br><br>
+      <strong>availableDocks: {{m.availableDocks}}</strong>
+    </agm-info-window>
+
+
+  </agm-marker>
+
+
+
+
+  <agm-circle [latitude]="location.lat" [longitude]="location.lng" [(radius)]="circleRadius" [fillColor]="'blue'"
+    [circleDraggable]="true" [editable]="true"></agm-circle>
+
+
+</agm-map>

@@ -1,0 +1,31 @@
+<mat-toolbar text-align=center>
+  <span> Chicago Social Hub </span>
+  &nbsp; &nbsp; &nbsp;
+
+  <mat-icon>restaurant</mat-icon>
+  <mat-icon>local_bar</mat-icon>
+  <mat-icon>local_cafe</mat-icon>
+
+
+  <span class="fill-remaining-space"></span>
+
+</mat-toolbar>
+
+<div style=" position: absolute;
+top: 30%;
+text-align: center;
+width: 100%;">
+ <button mat-raised-button color="primary" routerLink="/find" style="position: absolute;top: 97px;">
+  Places
+  &nbsp;
+  <mat-icon>home</mat-icon>
+
+</button>  &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;
+        <button mat-raised-button color="primary" routerLink="/heat-map" style="position: absolute;top: 97px;">
+            Divvy Heat Map
+            &nbsp;
+            <mat-icon>motorcycle</mat-icon>
+
+        </button>
+</div>
+<router-outlet></router-outlet>

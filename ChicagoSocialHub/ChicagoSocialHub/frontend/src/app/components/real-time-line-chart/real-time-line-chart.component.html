@@ -1,0 +1,89 @@
+<div>
+    <br>
+    <div style="width: 28%; float:left;">
+        &nbsp; &nbsp; &nbsp;
+        <button mat-raised-button color="primary" routerLink="/home" style="position: absolute;top: 97px;">
+            Home
+            &nbsp;
+            <mat-icon>home</mat-icon>
+
+        </button>
+        &nbsp; &nbsp; &nbsp;
+        &nbsp; &nbsp; &nbsp;
+        &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    <button mat-raised-button color="primary" routerLink="/find" style="position: absolute;top: 97px;">
+       Find Another Place
+               &nbsp;
+         <mat-icon>search</mat-icon> 
+       </button>
+    </div>
+    <div style="width: 67%;float:left;">
+        <mat-form-field style="width: 175px;">
+            <mat-select [(ngModel)]="selected" placeholder="Time Range" (ngModelChange)="plotLineChart()">
+                <mat-option value="1 hr">1 hr</mat-option>
+                <mat-option value="24 hr">24 hr</mat-option>
+                <mat-option value="168 hr">7 Days</mat-option>
+            </mat-select>
+       </mat-form-field>&nbsp; &nbsp; &nbsp;
+       <!-- <mat-checkbox color="primary" [(ngModel)]="SMA1hrchecked" (change)="plotLineChart()">
+            <h3>1 hour SMA</h3>
+        </mat-checkbox>&nbsp; &nbsp; &nbsp;
+        <mat-checkbox [(ngModel)]="SMA24hrchecked" (change)="plotLineChart()">
+            <h3>24 hours SMA</h3>
+        </mat-checkbox>-->
+
+    </div>
+    <div style="width: 5%; float:left;">
+        <button style="position: absolute;top: 95px;right: 20px;" mat-raised-button color="warn" (click)="goBack()">
+            <span>Back</span>
+            &nbsp;
+            <mat-icon>keyboard_backspace</mat-icon>
+        </button>
+    </div>
+</div>
+<br> <br>    &nbsp;    &nbsp;    &nbsp;
+<div     style="text-align: center;"><h2> Divvy Station: <span style="color:blue">{{stationNm}}</span></h2></div>
+
+<div style="padding-left: 25px;">
+    <div style="width: 65%; float:left;">
+        <svg width="900" height="510" id="svg"></svg>
+    </div>&nbsp; &nbsp; &nbsp;
+    <div style="width: 25%; float:left ;" webkitdirectory id="bulkyFolder">
+        <div class="Legend" style="padding: 12px;">
+            <span *ngIf='this.dataType === "realTime" '>
+            <div class="Green" >&nbsp;</div>
+            Real-time Data for {{selected === '168 hr'? '7 days' : selected}}</span><br>
+            <span *ngIf='this.dataType === "SMA" && selected === "1 hr"'>
+                <div class="Green">&nbsp;</div>
+                1 hour SMA<br>
+            </span>
+            <span *ngIf='this.dataType === "SMA" && selected === "24 hr"'>
+                <div class="Blue">&nbsp;</div>
+                24 hours SMA
+            </span>
+            <span *ngIf='this.dataType === "SMA" && selected === "168 hr"'>
+                    <div class="Red">&nbsp;</div>
+                    7days SMA
+                </span>
+        </div>
+    </div>
+    <div style="width: 15%;float: left;padding: 87px;" webkitdirectory id="bulkyFolder1">
+        <div class="Legend">
+                <span *ngIf='this.dataType === "realTime" '>
+                        <div class="Green" >&nbsp;</div>
+                        Real-time Data for {{selected}}</span><br>
+                        <span *ngIf='this.dataType === "SMA" && selected === "1 hr"'>
+                            <div class="Green">&nbsp;</div>
+                            1 hour SMA<br>
+                        </span>
+                        <span *ngIf='this.dataType === "SMA" && selected === "24 hr"'>
+                            <div class="Blue">&nbsp;</div>
+                            24 hours SMA
+                        </span>
+                        <span *ngIf='this.dataType === "SMA" && selected === "168 hr"'>
+                                <div class="Red">&nbsp;</div>
+                                7days SMA
+                            </span>
+        </div>
+    </div>
+</div>
